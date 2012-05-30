@@ -4,7 +4,7 @@
 # but mainly a reminder of the steps involved.
 
 AorM="atom"
-VDB="vald_atom_alt"
+VDB="vald_$AroM"
 VUSR="vald"
 VPWD="V@ld"
 
@@ -25,10 +25,9 @@ echo "CREATE DATABASE $VDB CHARACTER SET utf8;" | mysql -u "$VUSR" -p"$VPWD"
 echo "done."
 
 echo -n "Running load.sql ... "
-mysql --verbose -u "$VUSR" -p"$VPWD" "$VDB" < load.sql
+mysql -u "$VUSR" -p"$VPWD" "$VDB" < load.sql
 echo "done."
 
-# this does not seem to be necessary anymore.
-# echo -n "Creating database indexes... "
-# ./manage.py sqlindexes node | mysql -u "$VUSR" -p"$VPWD" "$VDB"
-# echo "done."
+echo -n "Creating database indexes... "
+./manage.py sqlindexes node | mysql -u "$VUSR" -p"$VPWD" "$VDB"
+echo "done."

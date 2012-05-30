@@ -10,7 +10,7 @@ import sys, os
 # Software and standards version
 ###################################################
 VAMDC_STDS_VERSION = '11.12'
-NODESOFTWARE_VERSION = '11.12r2'
+NODESOFTWARE_VERSION = '11.12r1'
 
 ###################################################
 # Basic node setup
@@ -27,7 +27,7 @@ ROOT_URLCONF = NODENAME+'.urls'
 
 # Tuple of auto-created admin info for database. Admins are added as tuples (name, email).
 # (note: the trailing ',' is what keeps it a 1-element tuple!)
-ADMINS = (('yourname', 'name@example.com'),)
+ADMINS = (('yourname', 'name@mail.net'),)
 MANAGERS = ADMINS
 
 EXAMPLE_QUERIES = ['SELECT ALL WHERE ... something',
@@ -129,7 +129,9 @@ TEMPLATE_DIRS = (
 )
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
-    'django.template.loaders.filesystem.Loader',
+    'django.template.loaders.filesystem.load_template_source',
+#    'django.template.loaders.app_directories.load_template_source',
+#     'django.template.loaders.eggs.load_template_source',
 )
 
 
