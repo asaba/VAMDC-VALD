@@ -5,10 +5,8 @@ RETURNABLES={\
 'XSAMSVersion': '0.3',
 #'SchemaLocation': '/Users/christian/research/VAMDC/XSAMS/'\
 #                  'release-0.2/xsams.xsd',
-#'SchemaLocation': '/Users/christian/research/VAMDC/XSAMS/'\
-#                  'release-0.3/xsams.xsd',
 'SchemaLocation': '/Users/christian/research/VAMDC/XSAMS/'\
-                  'vamdc-working/xsams.xsd',
+                  'release-0.3/xsams.xsd',
 
 'SourceID': 'Source.refID',
 'SourceAuthorName': 'Source.author_list()',
@@ -29,8 +27,8 @@ RETURNABLES={\
 'RadTransID': 'RadTran.id',
 'RadTransComments': '',
 'RadTransMethodRef': 'EXP',
-'RadTransUpperStateRef': 'RadTran.statep.id',
-'RadTransLowerStateRef': 'RadTran.statepp.id',
+'RadTransFinalStateRef': 'RadTran.statep.id',
+'RadTransInitialStateRef': 'RadTran.statepp.id',
 'RadTransWavenumber': 'RadTran.nu.val',
 'RadTransWavenumberUnit': '1/cm',
 'RadTransWavenumberRef': 'RadTran.nu.ref',
@@ -59,18 +57,13 @@ RETURNABLES={\
 'MoleculeStateEnergyUnit': '1/cm',
 'MoleculeStateEnergyOrigin': 'Zero-point energy',
 'MoleculeStateTotalStatisticalWeight': 'MoleculeState.g',
-'MoleculeStateQuantumNumbers': 'MoleculeState',    # use the XML() method
-
-'MoleculeBasisStates': 'Molecule.BasisStates',   # XXX YYY
-'BasisState': 'BasisState',   # XXX YYY
-'BasisStateID': 'MoleculeState.id',   # XXX YYY
+'MoleculeStateQuantumNumbers': 'MoleculeState',    # use the an XML() method
 
 'MoleculeQnStateID': 'Qns.state',
-'MoleculeQnCase': 'MoleculeState.Qns.case',      # e.g. 'dcs', 'ltcs', ...
-'MoleculeQnLabel': 'MoleculeState.Qns.qn_name',    # e.g. 'J', 'asSym', ...
-'MoleculeQnValue': 'MoleculeState.Qns.qn_val',
-'MoleculeQnAttribute': 'MoleculeState.Qns.qn_attr',
-'MoleculeQNElecStateLabel': 'MoleculeState.Qns.ElecStateLabel',
+'MoleculeQnCase': 'Qns.case',      # e.g. 'dcs', 'ltcs', ...
+'MoleculeQnLabel': 'Qns.qn_name',    # e.g. 'J', 'asSym', ...
+'MoleculeQnValue': 'Qns.qn_val',
+'MoleculeQnAttribute': 'Qns.qn_attr',
 'MoleculeQnXML': 'Qns.xml',
 
 'EnvironmentID': 'Environment.id',

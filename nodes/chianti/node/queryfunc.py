@@ -77,11 +77,7 @@ def getSpeciesWithStates(transs):
         # This is important and a requirement looked for by the node 
         # software (all RETURNABLES AtomState* will try to loop over this
         # nested queryset). 
-        spec.States = models.States.objects.filter(species=spec).filter(pk__in=stateIds)
-        for state in spec.States:
-           state.Components = models.Components.objects.filter(pk=state.id)
-           for comp in state.Components:
-               comp.Shells = models.Subshells.objects.filter(state=state.id)
+        spec.States = models.States.objects.filter(species=spec).filter(pk__in=stateIds)    
         nstates += spec.States.count()
     return species, nspecies, nstates
 
