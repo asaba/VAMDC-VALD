@@ -661,6 +661,29 @@ class MolecularSpecies(models.Model):
             for e in elements_species:
                 weight += e.element.standard_atomic_weight
         return weight
+    def OrdinaryStructuralFormula(self):
+        result = u""
+        if self.formula:
+            s = False
+            for c in self.formula:
+                if re.match(r"[0-9]", c):
+                    if not s:
+                        result += u"\u005F{" + c
+                        s = True
+                    else:
+                        result += c
+                else:
+                    if s:
+                        result += u"}" + c
+                        s = False
+                    else:
+                        result += c
+            if s:
+                result += u"}"
+            result = u"$" + result  + u"$" 
+        else:
+            result += u"$NOFORMULA$"
+        return result
         
         
 class ElementSpecies(models.Model):

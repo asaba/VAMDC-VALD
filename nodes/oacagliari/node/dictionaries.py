@@ -25,6 +25,7 @@ RETURNABLES = {
 'MoleculeStateEnergyUnit':u'au', #TO CHANGE
 'MoleculeStateDescription': 'MoleculeState.description',
 'MoleculeStateID':'MoleculeState.state_id',
+'MoleculeOrdinaryStructuralFormula':'Molecule.OrdinaryStructuralFormula()',
 'MoleculeStoichiometricFormula':'Molecule.formula',
 'MoleculeStructure': "Molecule.molecularchemicalspecies",
 'MoleculeStructureMethod': "MoleculeStructure.MoleculeStructureMethod", #kkk
