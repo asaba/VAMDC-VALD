@@ -67,6 +67,7 @@ RETURNABLES = {
 
 
 RESTRICTABLES = { 
+#'AsOfDate':'',
 #'AtomMass':'elementspecies__element__standard_atomic_weight',
 #'AtomMassNumber':'elementspecies__element__atomic_mass',
 #'AtomSymbol':'elementspecies__element__symbol',
@@ -78,8 +79,8 @@ RESTRICTABLES = {
 'MoleculeStateID':'electronicstates__state_id',
 'MoleculeStoichiometricFormula':'formula',
 #'MoleculeMolecularWeight':'totalmolweight',
-'MoleculeNormalModeHarmonicFrequency' : 'electronicstates__vibrationalanalysesarmonic__tabulatedvibrations__frequency',
-'MoleculeNormalModeIntensity' : 'electronicstates__vibrationalanalysesarmonic__tabulatedvibrations__ir_intensity',
+'MoleculeNormalModeHarmonicFrequency' : 'electronicstates__vibrationalanalysesharmonic__tabulatedvibrations__frequency',
+'MoleculeNormalModeIntensity' : 'electronicstates__vibrationalanalysesharmonic__tabulatedvibrations__ir_intensity',
 }
 
 
