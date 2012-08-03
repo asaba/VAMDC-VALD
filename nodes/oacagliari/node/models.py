@@ -9,7 +9,7 @@
 
 from django.db import models
 from decimal import *
-from commonfunctions import *
+import commonfunctions as cf
 import re
 
 import dictionaries
@@ -189,11 +189,11 @@ class Bibliography(models.Model):
 
     def now(self, force=False):
         if force or not self.time_stamp:
-            self.time_stamp = datatimenow()
+            self.time_stamp = cf.datatimenow()
     def expire(self):
-        return dataexpire(self)
+        return cf.dataexpire(self)
     def expired(self, timecheck = None):
-        return checkexpired(self, timecheck)
+        return cf.checkexpired(self, timecheck)
     expired.boolean = True
     objects = models.Manager() # The default manager.
     alive_objects = GenericModelNotExpiredManager()
@@ -213,11 +213,11 @@ class Authors(models.Model):
         return self.name
     def now(self, force=False):
         if force or not self.time_stamp:
-            self.time_stamp = datatimenow()
+            self.time_stamp = cf.datatimenow()
     def expire(self):
-        return dataexpire(self)
+        return cf.dataexpire(self)
     def expired(self, timecheck = None):
-        return checkexpired(self, timecheck)
+        return cf.checkexpired(self, timecheck)
     expired.boolean = True
     objects = models.Manager() # The default manager.
     alive_objects = GenericModelNotExpiredManager()
@@ -256,11 +256,11 @@ class BasisSetsBibliographies(models.Model):
         db_table = u'basissets_bibliographies'
     def now(self, force=False):
         if force or not self.time_stamp:
-            self.time_stamp = datatimenow()
+            self.time_stamp = cf.datatimenow()
     def expire(self):
-        return dataexpire(self)
+        return cf.dataexpire(self)
     def expired(self, timecheck = None):
-        return checkexpired(self, timecheck)
+        return cf.checkexpired(self, timecheck)
     expired.boolean = True
     objects = models.Manager() # The default manager.
     alive_objects = GenericModelNotExpiredManager() 
@@ -361,11 +361,11 @@ class ChemistryCodesBibliographies(models.Model):
         db_table = u'chemistrycodes_bibliographies'
     def now(self, force=False):
         if force or not self.time_stamp:
-            self.time_stamp = datatimenow()
+            self.time_stamp = cf.datatimenow()
     def expire(self):
-        return dataexpire(self)
+        return cf.dataexpire(self)
     def expired(self, timecheck = None):
-        return checkexpired(self, timecheck)
+        return cf.checkexpired(self, timecheck)
     expired.boolean = True
     objects = models.Manager() # The default manager.
     alive_objects = GenericModelNotExpiredManager()
@@ -397,11 +397,11 @@ class DipoleMoments(models.Model):
         return u"mu_x: " + str(self.mu_x) + u" mu_y: " + str(self.mu_y) + u" mu_z: " + str(self.mu_z)
     def now(self, force=False):
         if force or not self.time_stamp:
-            self.time_stamp = datatimenow()
+            self.time_stamp = cf.datatimenow()
     def expire(self):
-        return dataexpire(self)
+        return cf.dataexpire(self)
     def expired(self, timecheck = None):
-        return checkexpired(self, timecheck)
+        return cf.checkexpired(self, timecheck)
     expired.boolean = True
     objects = models.Manager() # The default manager.
     alive_objects = GenericModelNotExpiredManager() 
@@ -418,11 +418,11 @@ class DipoleMomentsBibliographies(models.Model):
         db_table = u'dipolemoments_bibliographies'
     def now(self, force=False):
         if force or not self.time_stamp:
-            self.time_stamp = datatimenow()
+            self.time_stamp = cf.datatimenow()
     def expire(self):
-        return dataexpire(self)
+        return cf.dataexpire(self)
     def expired(self, timecheck = None):
-        return checkexpired(self, timecheck)
+        return cf.checkexpired(self, timecheck)
     expired.boolean = True
     objects = models.Manager() # The default manager.
     alive_objects = GenericModelNotExpiredManager()
@@ -475,11 +475,11 @@ class Editors(models.Model):
         return self.name
     def now(self, force=False):
         if force or not self.time_stamp:
-            self.time_stamp = datatimenow()
+            self.time_stamp = cf.datatimenow()
     def expire(self):
-        return dataexpire(self)
+        return cf.dataexpire(self)
     def expired(self, timecheck = None):
-        return checkexpired(self, timecheck)
+        return cf.checkexpired(self, timecheck)
     expired.boolean = True
     objects = models.Manager() # The default manager.
     alive_objects = GenericModelNotExpiredManager() # The Dahl-specific manager.
@@ -499,11 +499,11 @@ class ElectronicStatesBibliographies(models.Model):
         db_table = u'electronicstates_bibliographies'
     def now(self, force=False):
         if force or not self.time_stamp:
-            self.time_stamp = datatimenow()
+            self.time_stamp = cf.datatimenow()
     def expire(self):
-        return dataexpire(self)
+        return cf.dataexpire(self)
     def expired(self, timecheck = None):
-        return checkexpired(self, timecheck)
+        return cf.checkexpired(self, timecheck)
     expired.boolean = True
     objects = models.Manager() # The default manager.
     alive_objects = GenericModelNotExpiredManager() 
@@ -527,11 +527,11 @@ class ElectronicTransitions(models.Model):
         db_table = u'electronictransitions'
     def now(self, force=False):
         if force or not self.time_stamp:
-            self.time_stamp = datatimenow()
+            self.time_stamp = cf.datatimenow()
     def expire(self):
-        return dataexpire(self)
+        return cf.dataexpire(self)
     def expired(self, timecheck = None):
-        return checkexpired(self, timecheck)
+        return cf.checkexpired(self, timecheck)
     expired.boolean = True
     objects = models.Manager() # The default manager.
     alive_objects = GenericModelNotExpiredManager() 
@@ -548,11 +548,11 @@ class ElectronicTransitionsBibliographies(models.Model):
         db_table = u'electronictransitions_bibliographies'
     def now(self, force=False):
         if force or not self.time_stamp:
-            self.time_stamp = datatimenow()
+            self.time_stamp = cf.datatimenow()
     def expire(self):
-        return dataexpire(self)
+        return cf.dataexpire(self)
     def expired(self, timecheck = None):
-        return checkexpired(self, timecheck)
+        return cf.checkexpired(self, timecheck)
     expired.boolean = True
     objects = models.Manager() # The default manager.
     alive_objects = GenericModelNotExpiredManager()
@@ -673,11 +673,11 @@ class Geometries(models.Model):
         return result
     def now(self, force=False):
         if force or not self.time_stamp:
-            self.time_stamp = datatimenow()
+            self.time_stamp = cf.datatimenow()
     def expire(self):
-        return dataexpire(self)
+        return cf.dataexpire(self)
     def expired(self, timecheck = None):
-        return checkexpired(self, timecheck)
+        return cf.checkexpired(self, timecheck)
     expired.boolean = True
     objects = models.Manager() # The default manager.
     alive_objects = GenericModelNotExpiredManager()
@@ -709,11 +709,11 @@ class IonisationEnergies(models.Model):
         return result
     def now(self, force=False):
         if force or not self.time_stamp:
-            self.time_stamp = datatimenow()
+            self.time_stamp = cf.datatimenow()
     def expire(self):
-        return dataexpire(self)
+        return cf.dataexpire(self)
     def expired(self, timecheck = None):
-        return checkexpired(self, timecheck)
+        return cf.checkexpired(self, timecheck)
     expired.boolean = True
     objects = models.Manager() # The default manager.
     alive_objects = GenericModelNotExpiredManager()
@@ -730,11 +730,11 @@ class IonisationEnergiesBibliographies(models.Model):
         db_table = u'ionisationenergies_bibliographies'
     def now(self, force=False):
         if force or not self.time_stamp:
-            self.time_stamp = datatimenow()
+            self.time_stamp = cf.datatimenow()
     def expire(self):
-        return dataexpire(self)
+        return cf.dataexpire(self)
     def expired(self, timecheck = None):
-        return checkexpired(self, timecheck)
+        return cf.checkexpired(self, timecheck)
     expired.boolean = True
     objects = models.Manager() # The default manager.
     alive_objects = GenericModelNotExpiredManager() 
@@ -808,11 +808,11 @@ class MolecularSpecies(models.Model):
             return "Inchi undefined"
     def now(self, force=False):
         if force or not self.time_stamp:
-            self.time_stamp = datatimenow()
+            self.time_stamp = cf.datatimenow()
     def expire(self):
-        return dataexpire(self)
+        return cf.dataexpire(self)
     def expired(self, timecheck = None):
-        return checkexpired(self, timecheck)
+        return cf.checkexpired(self, timecheck)
     def molweight(self):
         weight = 0
         if self.species_id:
@@ -872,11 +872,11 @@ class Polarisabilities(models.Model):
         db_table = u'polarisabilities'
     def now(self, force=False):
         if force or not self.time_stamp:
-            self.time_stamp = datatimenow()
+            self.time_stamp = cf.datatimenow()
     def expire(self):
-        return dataexpire(self)
+        return cf.dataexpire(self)
     def expired(self, timecheck = None):
-        return checkexpired(self, timecheck)
+        return cf.checkexpired(self, timecheck)
     expired.boolean = True
     objects = models.Manager() # The default manager.
     alive_objects = GenericModelNotExpiredManager()
@@ -893,11 +893,11 @@ class PolarisabilitiesBibliographies(models.Model):
         db_table = u'polarisabilities_bibliographies'
     def now(self, force=False):
         if force or not self.time_stamp:
-            self.time_stamp = datatimenow()
+            self.time_stamp = cf.datatimenow()
     def expire(self):
-        return dataexpire(self)
+        return cf.dataexpire(self)
     def expired(self, timecheck = None):
-        return checkexpired(self, timecheck)
+        return cf.checkexpired(self, timecheck)
     expired.boolean = True
     objects = models.Manager() # The default manager.
     alive_objects = GenericModelNotExpiredManager()
@@ -922,11 +922,11 @@ class Publishers(models.Model):
         db_table = u'publishers'
     def now(self, force=False):
         if force or not self.time_stamp:
-            self.time_stamp = datatimenow()
+            self.time_stamp = cf.datatimenow()
     def expire(self):
-        return dataexpire(self)
+        return cf.dataexpire(self)
     def expired(self, timecheck = None):
-        return checkexpired(self, timecheck)
+        return cf.checkexpired(self, timecheck)
     expired.boolean = True
     objects = models.Manager() # The default manager.
     alive_objects = GenericModelNotExpiredManager() 
@@ -947,11 +947,11 @@ class Reftype(models.Model):
             return u"NO DESCRIPTION"
     def now(self, force=False):
         if force or not self.time_stamp:
-            self.time_stamp = datatimenow()
+            self.time_stamp = cf.datatimenow()
     def expire(self):
-        return dataexpire(self)
+        return cf.dataexpire(self)
     def expired(self, timecheck = None):
-        return checkexpired(self, timecheck)
+        return cf.checkexpired(self, timecheck)
     expired.boolean = True
     objects = models.Manager() # The default manager.
     alive_objects = GenericModelNotExpiredManager() 
@@ -971,11 +971,11 @@ class RotationalConstantsBibliographies(models.Model):
         db_table = u'rotationalconstants_bibliographies'
     def now(self, force=False):
         if force or not self.time_stamp:
-            self.time_stamp = datatimenow()
+            self.time_stamp = cf.datatimenow()
     def expire(self):
-        return dataexpire(self)
+        return cf.dataexpire(self)
     def expired(self, timecheck = None):
-        return checkexpired(self, timecheck)
+        return cf.checkexpired(self, timecheck)
     expired.boolean = True
     objects = models.Manager() # The default manager.
     alive_objects = GenericModelNotExpiredManager() 
@@ -1106,7 +1106,7 @@ class ElectronicStates(models.Model):
     time_stamp = models.DateTimeField(null=True, blank=True)
     qual_index = models.IntegerField(null=True, blank=True)
     comments = models.TextField(blank=True)
-    #normalmodes = models.ManyToManyField(NormalMode)
+    time_exp = models.DateTimeField(null=True, blank=True)
     class Meta:
         db_table = u'electronicstates'
     def __unicode__(self):
@@ -1116,7 +1116,36 @@ class ElectronicStates(models.Model):
         if self.multiplicity:
             returnstring += "Multiplicity: " + str(self.multiplicity)
         return returnstring
-    
+    def countatoms(self):
+        return self.species.atoms.count()
+    def return_basissets_for_atoms(self):
+        #return a list of tuple (atom, basisset)
+        result = []
+        esset = self.task.elementspeciesbasisset_set.all()
+        for es_bs in esset.order_by('elementspecies__element').order_by('basisset'):
+            result.append(es_bs)
+        return result
+    def equal_basis_set(self, basissets_for_atoms):
+        mybasissets_for_atoms = self.return_basissets_for_atoms()
+        result = True
+        if len(mybasissets_for_atoms) == len(basissets_for_atoms):
+            for i in range(len(mybasissets_for_atoms)):
+                if mybasissets_for_atoms[i].elementspecies.element != basissets_for_atoms[i].elementspecies.element or mybasissets_for_atoms[i].basisset != basissets_for_atoms[i].basisset:
+                    result = False
+                    break
+        else:
+            return False
+        return result
+    def now(self, force=False):
+        if force or not self.time_stamp:
+            self.time_stamp = cf.datatimenow()
+    def expire(self):
+        return cf.dataexpire(self)
+    def expired(self, timecheck = None):
+        return cf.checkexpired(self, timecheck)
+    expired.boolean = True
+    objects = models.Manager() # The default manager.
+    alive_objects = GenericModelNotExpiredManager()
     
 class RotationalConstants(models.Model):
     rot_id = models.AutoField(primary_key=True)
@@ -1142,11 +1171,11 @@ class RotationalConstants(models.Model):
         db_table = u'rotationalconstants'
     def now(self, force=False):
         if force or not self.time_stamp:
-            self.time_stamp = datatimenow()
+            self.time_stamp = cf.datatimenow()
     def expire(self):
-        return dataexpire(self)
+        return cf.dataexpire(self)
     def expired(self, timecheck = None):
-        return checkexpired(self, timecheck)
+        return cf.checkexpired(self, timecheck)
     expired.boolean = True
     objects = models.Manager() # The default manager.
     alive_objects = GenericModelNotExpiredManager()
@@ -1163,11 +1192,11 @@ class TheoryLevelsBibliographies(models.Model):
         db_table = u'theorylevels_bibliographies'
     def now(self, force=False):
         if force or not self.time_stamp:
-            self.time_stamp = datatimenow()
+            self.time_stamp = cf.datatimenow()
     def expire(self):
-        return dataexpire(self)
+        return cf.dataexpire(self)
     def expired(self, timecheck = None):
-        return checkexpired(self, timecheck)
+        return cf.checkexpired(self, timecheck)
     expired.boolean = True
     objects = models.Manager() # The default manager.
     alive_objects = GenericModelNotExpiredManager() 
@@ -1189,11 +1218,11 @@ class VanDerWaals(models.Model):
         db_table = u'vanderwaals'
     def now(self, force=False):
         if force or not self.time_stamp:
-            self.time_stamp = datatimenow()
+            self.time_stamp = cf.datatimenow()
     def expire(self):
-        return dataexpire(self)
+        return cf.dataexpire(self)
     def expired(self, timecheck = None):
-        return checkexpired(self, timecheck)
+        return cf.checkexpired(self, timecheck)
     expired.boolean = True
     objects = models.Manager() # The default manager.
     alive_objects = GenericModelNotExpiredManager()
@@ -1210,11 +1239,11 @@ class VanDerWallsBibliographies(models.Model):
         db_table = u'vanderwalls_bibliographies'
     def now(self, force=False):
         if force or not self.time_stamp:
-            self.time_stamp = datatimenow()
+            self.time_stamp = cf.datatimenow()
     def expire(self):
-        return dataexpire(self)
+        return cf.dataexpire(self)
     def expired(self, timecheck = None):
-        return checkexpired(self, timecheck)
+        return cf.checkexpired(self, timecheck)
     expired.boolean = True
     objects = models.Manager() # The default manager.
     alive_objects = GenericModelNotExpiredManager() 
@@ -1233,11 +1262,11 @@ class VibrationalAnalysesAnarmonic(models.Model):
         db_table = u'vibrationalanalysesanarmonic'
     def now(self, force=False):
         if force or not self.time_stamp:
-            self.time_stamp = datatimenow()
+            self.time_stamp = cf.datatimenow()
     def expire(self):
-        return dataexpire(self)
+        return cf.dataexpire(self)
     def expired(self, timecheck = None):
-        return checkexpired(self, timecheck)
+        return cf.checkexpired(self, timecheck)
     expired.boolean = True
     objects = models.Manager() # The default manager.
     alive_objects = GenericModelNotExpiredManager()
@@ -1255,11 +1284,11 @@ class Vibrationalanalysesharmonic(models.Model):
         db_table = u'vibrationalanalysesharmonic'
     def now(self, force=False):
         if force or not self.time_stamp:
-            self.time_stamp = datatimenow()
+            self.time_stamp = cf.datatimenow()
     def expire(self):
-        return dataexpire(self)
+        return cf.dataexpire(self)
     def expired(self, timecheck = None):
-        return checkexpired(self, timecheck)
+        return cf.checkexpired(self, timecheck)
     expired.boolean = True
     objects = models.Manager() # The default manager.
     alive_objects = GenericModelNotExpiredManager()
@@ -1315,11 +1344,11 @@ class VibrationalanalysesharmonicBibliographies(models.Model):
         db_table = u'vibrationalanalysesharmonic_bibliographies' 
     def now(self, force=False):
         if force or not self.time_stamp:
-            self.time_stamp = datatimenow()
+            self.time_stamp = cf.datatimenow()
     def expire(self):
-        return dataexpire(self)
+        return cf.dataexpire(self)
     def expired(self, timecheck = None):
-        return checkexpired(self, timecheck)
+        return cf.checkexpired(self, timecheck)
     expired.boolean = True
     objects = models.Manager() # The default manager.
     alive_objects = GenericModelNotExpiredManager()
@@ -1337,11 +1366,11 @@ class VibrationalAnalysesAnarmonicBibliographies(models.Model):
         db_table = u'vibrationalanalysesanarmonic_bibliographies'
     def now(self, force=False):
         if force or not self.time_stamp:
-            self.time_stamp = datatimenow()
+            self.time_stamp = cf.datatimenow()
     def expire(self):
-        return dataexpire(self)
+        return cf.dataexpire(self)
     def expired(self, timecheck = None):
-        return checkexpired(self, timecheck)
+        return cf.checkexpired(self, timecheck)
     expired.boolean = True
     objects = models.Manager() # The default manager.
     alive_objects = GenericModelNotExpiredManager()

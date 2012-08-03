@@ -17,11 +17,12 @@ RETURNABLES = {
 'MoleculeMolecularWeight':'Molecule.molweight()',
 'MoleculeMolecularWeightUnit': u"amu",
 #'MoleculeQnCase':'MoleQNs.',
-"MoleculeStateEnergyOrigin":"assuming zero at infinity",
 'MoleculeSpeciesID':'Molecule.pk',
+"MoleculeStateEnergyOrigin":"assuming zero at infinity",
 'MoleculeStateEnergy':'MoleculeState.total_energy',
 'MoleculeStateEnergyMethod':'MoleculeState.energymethod', #kkk
 'MoleculeStateEnergyRef' : 'MoleculeState.StateEnergySourceRef', #kkk electronic state
+
 'MoleculeStateEnergyUnit':u'au', #TO CHANGE
 'MoleculeStateDescription': 'MoleculeState.description',
 'MoleculeStateID':'MoleculeState.state_id',
@@ -67,7 +68,7 @@ RETURNABLES = {
 
 
 RESTRICTABLES = { 
-#'AsOfDate':'',
+'AsOfDate':'time_stamp',
 #'AtomMass':'elementspecies__element__standard_atomic_weight',
 #'AtomMassNumber':'elementspecies__element__atomic_mass',
 #'AtomSymbol':'elementspecies__element__symbol',
