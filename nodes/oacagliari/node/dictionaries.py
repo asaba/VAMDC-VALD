@@ -17,14 +17,16 @@ RETURNABLES = {
 'MoleculeMolecularWeight':'Molecule.molweight()',
 'MoleculeMolecularWeightUnit': u"amu",
 #'MoleculeQnCase':'MoleQNs.',
-"MoleculeStateEnergyOrigin":"assuming zero at infinity",
 'MoleculeSpeciesID':'Molecule.pk',
+"MoleculeStateEnergyOrigin":"assuming zero at infinity",
 'MoleculeStateEnergy':'MoleculeState.total_energy',
 'MoleculeStateEnergyMethod':'MoleculeState.energymethod', #kkk
 'MoleculeStateEnergyRef' : 'MoleculeState.StateEnergySourceRef', #kkk electronic state
+
 'MoleculeStateEnergyUnit':u'au', #TO CHANGE
 'MoleculeStateDescription': 'MoleculeState.description',
 'MoleculeStateID':'MoleculeState.state_id',
+'MoleculeOrdinaryStructuralFormula':'Molecule.OrdinaryStructuralFormula()',
 'MoleculeStoichiometricFormula':'Molecule.formula',
 'MoleculeStructure': "Molecule.molecularchemicalspecies",
 'MoleculeStructureMethod': "MoleculeStructure.MoleculeStructureMethod", #kkk
@@ -66,6 +68,7 @@ RETURNABLES = {
 
 
 RESTRICTABLES = { 
+'AsOfDate':'time_stamp',
 #'AtomMass':'elementspecies__element__standard_atomic_weight',
 #'AtomMassNumber':'elementspecies__element__atomic_mass',
 #'AtomSymbol':'elementspecies__element__symbol',
@@ -77,8 +80,8 @@ RESTRICTABLES = {
 'MoleculeStateID':'electronicstates__state_id',
 'MoleculeStoichiometricFormula':'formula',
 #'MoleculeMolecularWeight':'totalmolweight',
-'MoleculeNormalModeHarmonicFrequency' : 'electronicstates__vibrationalanalysesarmonic__tabulatedvibrations__frequency',
-'MoleculeNormalModeIntensity' : 'electronicstates__vibrationalanalysesarmonic__tabulatedvibrations__ir_intensity',
+'MoleculeNormalModeHarmonicFrequency' : 'electronicstates__vibrationalanalysesharmonic__tabulatedvibrations__frequency',
+'MoleculeNormalModeIntensity' : 'electronicstates__vibrationalanalysesharmonic__tabulatedvibrations__ir_intensity',
 }
 
 

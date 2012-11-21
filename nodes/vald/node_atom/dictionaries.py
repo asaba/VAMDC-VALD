@@ -15,16 +15,14 @@ RETURNABLES = {\
 'AtomNuclearCharge':'Atom.atomic',
 'AtomIonCharge':'Atom.ion',
 'AtomMassNumber':'Atom.massno',
-'AtomStateDescription': 'AtomState.term_desc',
 'AtomStateLandeFactor':'AtomState.lande',
 'AtomStateLandeFactorUnit':'unitless',
 'AtomStateLandeFactorRef':'AtomState.lande_ref_id',
 'AtomStateEnergy':'AtomState.energy',
 'AtomStateEnergyRef':'AtomState.energy_ref_id',
 'AtomStateEnergyUnit':'1/cm',
-
-'AtomStateParity':'AtomState.p',
 'AtomStateTotalAngMom':'AtomState.j',
+<<<<<<< HEAD
 
 'AtomStateTermLSL':'Component.l',
 'AtomStateTermLSS':'Component.s',
@@ -51,8 +49,25 @@ RETURNABLES = {\
 'RadTransWavelengthMethod':'RadTran.method_return',
 #'RadTransProcess':"RadTran.transition_type",
 'RadTransProcess':"excitation",
+=======
+'AtomStateParity':'AtomState.p',
+'AtomStateTermLSL':'AtomState.l',
+'AtomStateTermS':'AtomState.s',
+'AtomStateTermJ1J2':'AtomState.j1j2()',
+'AtomStateTermJKJ':'AtomState.jc',
+'AtomStateTermJKS':'AtomState.s2',
+'AtomStateKappa':'AtomState.k',
+#############################################################
+'RadTransID':'RadTran.id',
+'RadTransSpeciesRef':'RadTran.species_id',
+'RadTransWavelength':'RadTran.wave',
+'RadTransWavelengthUnit':u'A',
+'RadTransWavelengthComment':'Wavelength is for vacuum.',
+'RadTransWavelengthRef':'RadTran.wave_ref_id',
+>>>>>>> 6b3cb7c6a397bc61cb9056f30120de976fed82f5
 'RadTransUpperStateRef':'RadTran.upstate_id',
 'RadTransLowerStateRef':'RadTran.lostate_id',
+'RadTransMethod':'RadTran.method_return',
 #'RadTransProbabilityA':'RadTran.einsteina',
 'RadTransProbabilityLog10WeightedOscillatorStrength':'RadTran.loggf',
 #'RadTransProbabilityLog10WeightedOscillatorStrengthEval':'RadTran.accur',
@@ -65,6 +80,7 @@ RETURNABLES = {\
 'RadTransBroadeningNaturalRef':'RadTran.gammarad_ref_id',
 'RadTransBroadeningNaturalEnvironment':'natural',
 'RadTransBroadeningNaturalLineshapeName':'lorentzian',
+<<<<<<< HEAD
 'RadTransBroadeningNaturalComment':"Natural Broadening",
 
 'RadTransBroadeningPressureChargedLineshapeParameter':'RadTran.gammastark',
@@ -90,6 +106,20 @@ RETURNABLES = {\
 'RadTransProbabilityOscillatorStrengthAccuracy':'Radtran.accur',
 'RadTransProbabilityOscillatorStrengthAccuracyType':'Radtran.get_accur_type()',
 'RadTransProbabilityOscillatorStrengthAccuracyRelative':'Radtran.get_accur_relative()'
+=======
+'RadTransBroadeningPressureLineshapeParameter':'RadTran.gammastark',
+'RadTransBroadeningPressureLineshapeName':'lorentzian',
+'RadTransBroadeningPressureLineshapeParameterName':'log(gamma)',
+'RadTransBroadeningPressureLineshapeParameterUnit':'cm3/s',
+'RadTransBroadeningPressureRef':'RadTran.gammastark_ref_id',
+'RadTransBroadeningPressureEnvironment':'stark',
+'RadTransBroadeningPressureComment':'Stark Broadening',
+#'RadTransBroadeningPressureLineshapeParameter':'RadTran.getWaals()',
+#'RadTransBroadeningPressureLineshapeParameterUnit':'["cm3/s","unitless"]',
+#'RadTransBroadeningPressureLineshapeName':'lorentzian',
+#'RadTransBroadeningPressureLineshapeParameterName':'["log(gamma)","alpha"]',
+#'RadTransBroadeningPressureRef':'RadTran.waals_ref_id',
+>>>>>>> 6b3cb7c6a397bc61cb9056f30120de976fed82f5
 }
 
 # import the converter functions
@@ -101,7 +131,6 @@ from django.db.models import Q
 RESTRICTABLES = {\
 #'ConstantTest':test_constant_factory('"U"'),
 'AtomSymbol':'species__name',
-'AtomMassNumber':'species__massno',
 'AtomNuclearCharge':'species__atomic',
 'IonCharge':'species__ion',
 'InchiKey':'species__inchi',

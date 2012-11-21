@@ -101,7 +101,7 @@ class TAPQUERY(object):
         try: self.format=lower(self.request['FORMAT'])
         except: self.errormsg += 'Cannot find FORMAT in request.\n'
 
-        try: self.parsedSQL=SQL.parseString(self.query,parseAll=True)
+        try: self.parsedSQL=SQL.parseString(self.query)
         except: # if this fails, we're done
             self.errormsg += 'Could not parse the SQL query string: %s\n'%self.query
             self.isvalid=False
@@ -267,4 +267,3 @@ def tables(request):
 #def async(request):
 #    c=RequestContext(request,{})
 #    return render_to_response('tap/index.html', c)
-
