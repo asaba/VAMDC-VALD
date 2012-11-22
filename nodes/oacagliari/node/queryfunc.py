@@ -140,7 +140,7 @@ def setupResults(sql, limit=1000):
                 MoleculeStructureMethod = state.energymethod
                 MoleculeStructureSourceRef = state.StateEnergySourceRef                
                 MoleculeStructure = state.geom.returncmlstructure(MoleculeStructureSourceRef)
-            vibration_analyses_armonic = state.vibrationalanalysesarmonic_set.all()
+            vibration_analyses_armonic = state.vibrationalanalysesharmonic_set.all()
             elementlist = state.geom.returnelementslist()
             
             if len(vibration_analyses_armonic) > 0:
