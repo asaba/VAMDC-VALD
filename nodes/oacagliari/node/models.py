@@ -21,7 +21,10 @@ if os.getenv('ENV_USER_TZ', None):
     TIME_ZONE = os.getenv('ENV_USER_TZ') # changed to UTC
 
 class ZeroPointMolecularStateClass():
+    #object used for dissociation limit of ElectronicStates 
     def __init__(self, molecularspeciesID):
+        #There are only one dissociation limit ElectronicStates for each MolecularSpecies
+        #used the prefix Z to avoid collision with other ID  
         self.state_id = "Z" + str(molecularspeciesID)
         self.total_energy = 0
         self.description = "Dissociation limit"

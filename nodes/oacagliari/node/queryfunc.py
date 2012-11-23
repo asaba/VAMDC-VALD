@@ -122,9 +122,7 @@ def setupResults(sql, limit=1000):
         NormalModeSourceRef = []
         MoleculeStructureSourceRef = []
         if len(molecular_specie.States) > 0:
-            #create a MolecularState for zero-point energy
-            #MolecularStateID = "Z" + molecular_specie.pk
-            #ZeroPointMolecularState = models.ElectronicStates(state_id = "Z" + str(molecular_specie.pk), total_energy = 0, description = "zero-point energy", )
+            #create a MolecularState for dissociation limit
             ZeroPointMolecularState = models.ZeroPointMolecularStateClass(molecular_specie.pk)
             ZeroPointMolecularState.StateEnergySourceRef = []
             ZeroPointMolecularState.energymethod = ""
@@ -132,50 +130,46 @@ def setupResults(sql, limit=1000):
             
         for state in molecular_specie.States:
             #search minimum total energy
+            #each ElectronicState's energy refers to dissociation limit
             state.StateEnergyOrigin = ZeroPointMolecularState.state_id
             state.StateEnergySourceRef = []
-            if not hasattr(state, "stateauxillary"):
+            if hasattr(state, "stateauxillary"):
+                vibration_analyses_armonic = []
+            else:
                 state.stateauxillary = 0
-            if hasattr(state, "task"):
                 state.energymethod = state.task.pk
                 if not (state.energymethod in [m.id for m in methods]):
                     new_method = models.Method(state.energymethod, state.task.returnmethoddescriptionandbib(), result_sources)
                     result_sources += new_method.Sources
                     methods.append(new_method)
-            if hasattr(state, "bibliographies"):
                 for ref in state.bibliographies.all():
                     if ref.bibtex:
                         if not (ref in result_sources):
                             result_sources.append(ref)
                         state.StateEnergySourceRef.append(ref.bib_id)
-            if min([min_energy, state.total_energy]) == state.total_energy:
-                #we need to list all molecule structure
-                MoleculeStructureMethod = state.energymethod
-                MoleculeStructureSourceRef = state.StateEnergySourceRef 
-                if hasattr(state, "geom"):               
-                    MoleculeStructure = state.geom.returncmlstructure(MoleculeStructureSourceRef)
-            if hasattr(state, "vibrationalanalysesharmonic_set"):    
+                if min([min_energy, state.total_energy]) == state.total_energy:
+                    #we need to list all molecule structure
+                    MoleculeStructureMethod = state.energymethod
+                    MoleculeStructureSourceRef = state.StateEnergySourceRef             
+                    MoleculeStructure = state.geom.returncmlstructure(MoleculeStructureSourceRef)  
                 vibration_analyses_armonic = state.vibrationalanalysesharmonic_set.all()
-            else:
-                vibration_analyses_armonic = []
-            if hasattr(state, "geom"):       
                 elementlist = state.geom.returnelementslist()
-            
-            if len(vibration_analyses_armonic) > 0:
-                for vref in vibration_analyses_armonic[0].bibliographies.all():
-                    if vref.bibtex:
-                        if not (vref in result_sources):
-                            result_sources.append(vref)
-                        NormalModeSourceRef.append(vref.bib_id)
-                nmMethod = vibration_analyses_armonic[0].task.pk
-                if not (nmMethod in [m.id for m in methods]):
-                    new_method = models.Method(nmMethod, vibration_analyses_armonic[0].task.returnmethoddescriptionandbib(), result_sources)
-                    result_sources += new_method.Sources
-                    methods.append(new_method)
-
-                for tab in vibration_analyses_armonic[0].tabulatedvibrations_set.all():
-                    normalmode = models.NormalMode(tab.pk, tab.frequency, tab.ir_intensity, tab.sym_type, tab.eigenvectors, state.state_id, elementlist, nmMethod, NormalModeSourceRef)
-                    normalmodelist.append(normalmode)
+                
+                if len(vibration_analyses_armonic) > 0:
+                    for vref in vibration_analyses_armonic[0].bibliographies.all():
+                        if vref.bibtex:
+                            if not (vref in result_sources):
+                                result_sources.append(vref)
+                            NormalModeSourceRef.append(vref.bib_id)
+                    nmMethod = vibration_analyses_armonic[0].task.pk
+                    if not (nmMethod in [m.id for m in methods]):
+                        new_method = models.Method(nmMethod, vibration_analyses_armonic[0].task.returnmethoddescriptionandbib(), result_sources)
+                        result_sources += new_method.Sources
+                        methods.append(new_method)
+    
+                    for tab in vibration_analyses_armonic[0].tabulatedvibrations_set.all():
+                        normalmode = models.NormalMode(tab.pk, tab.frequency, tab.ir_intensity, tab.sym_type, tab.eigenvectors, state.state_id, elementlist, nmMethod, NormalModeSourceRef)
+                        normalmodelist.append(normalmode)
 
         molecular_specie.molecularchemicalspecies = models.MolecularChemicalSpecies(MoleculeStructure, MoleculeStructureMethod, MoleculeStructureSourceRef, None, nmMethod, NormalModeSourceRef)
         if normalmodelist:
