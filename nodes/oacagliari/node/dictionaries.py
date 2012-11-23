@@ -18,10 +18,11 @@ RETURNABLES = {
 'MoleculeMolecularWeightUnit': u"amu",
 #'MoleculeQnCase':'MoleQNs.',
 'MoleculeSpeciesID':'Molecule.pk',
-"MoleculeStateEnergyOrigin":"assuming zero at infinity",
+"MoleculeStateEnergyOrigin": 'MoleculeState.StateEnergyOrigin', #"assuming zero at infinity",
 'MoleculeStateEnergy':'MoleculeState.total_energy',
 'MoleculeStateEnergyMethod':'MoleculeState.energymethod', #kkk
 'MoleculeStateEnergyRef' : 'MoleculeState.StateEnergySourceRef', #kkk electronic state
+'MoleculeStateAuxillary' : 'MoleculeState.stateauxillary',
 
 'MoleculeStateEnergyUnit':u'au', #TO CHANGE
 'MoleculeStateDescription': 'MoleculeState.description',

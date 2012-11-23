@@ -115,33 +115,51 @@ def setupResults(sql, limit=1000):
     nstates = 0
     
     for molecular_specie in molecularspecies:
-        molecular_specie.States = molecular_specie.electronicstates_set.all()
+        molecular_specie.States = list(molecular_specie.electronicstates_set.all())
         min_energy = 0
         min_energy = min
         normalmodelist = []
         NormalModeSourceRef = []
         MoleculeStructureSourceRef = []
+        if len(molecular_specie.States) > 0:
+            #create a MolecularState for zero-point energy
+            #MolecularStateID = "Z" + molecular_specie.pk
+            #ZeroPointMolecularState = models.ElectronicStates(state_id = "Z" + str(molecular_specie.pk), total_energy = 0, description = "zero-point energy", )
+            ZeroPointMolecularState = models.ZeroPointMolecularStateClass(molecular_specie.pk)
+            ZeroPointMolecularState.StateEnergySourceRef = []
+            ZeroPointMolecularState.energymethod = ""
+            molecular_specie.States.append(ZeroPointMolecularState)
+            
         for state in molecular_specie.States:
             #search minimum total energy
+            state.StateEnergyOrigin = ZeroPointMolecularState.state_id
             state.StateEnergySourceRef = []
-            state.energymethod = state.task.pk
-            if not (state.energymethod in [m.id for m in methods]):
-                new_method = models.Method(state.energymethod, state.task.returnmethoddescriptionandbib(), result_sources)
-                result_sources += new_method.Sources
-                methods.append(new_method)
-
-            for ref in state.bibliographies.all():
-                if ref.bibtex:
-                    if not (ref in result_sources):
-                        result_sources.append(ref)
-                    state.StateEnergySourceRef.append(ref.bib_id)
+            if not hasattr(state, "stateauxillary"):
+                state.stateauxillary = 0
+            if hasattr(state, "task"):
+                state.energymethod = state.task.pk
+                if not (state.energymethod in [m.id for m in methods]):
+                    new_method = models.Method(state.energymethod, state.task.returnmethoddescriptionandbib(), result_sources)
+                    result_sources += new_method.Sources
+                    methods.append(new_method)
+            if hasattr(state, "bibliographies"):
+                for ref in state.bibliographies.all():
+                    if ref.bibtex:
+                        if not (ref in result_sources):
+                            result_sources.append(ref)
+                        state.StateEnergySourceRef.append(ref.bib_id)
             if min([min_energy, state.total_energy]) == state.total_energy:
                 #we need to list all molecule structure
                 MoleculeStructureMethod = state.energymethod
-                MoleculeStructureSourceRef = state.StateEnergySourceRef                
-                MoleculeStructure = state.geom.returncmlstructure(MoleculeStructureSourceRef)
-            vibration_analyses_armonic = state.vibrationalanalysesharmonic_set.all()
-            elementlist = state.geom.returnelementslist()
+                MoleculeStructureSourceRef = state.StateEnergySourceRef 
+                if hasattr(state, "geom"):               
+                    MoleculeStructure = state.geom.returncmlstructure(MoleculeStructureSourceRef)
+            if hasattr(state, "vibrationalanalysesharmonic_set"):    
+                vibration_analyses_armonic = state.vibrationalanalysesharmonic_set.all()
+            else:
+                vibration_analyses_armonic = []
+            if hasattr(state, "geom"):       
+                elementlist = state.geom.returnelementslist()
             
             if len(vibration_analyses_armonic) > 0:
                 for vref in vibration_analyses_armonic[0].bibliographies.all():
@@ -162,7 +180,7 @@ def setupResults(sql, limit=1000):
         molecular_specie.molecularchemicalspecies = models.MolecularChemicalSpecies(MoleculeStructure, MoleculeStructureMethod, MoleculeStructureSourceRef, None, nmMethod, NormalModeSourceRef)
         if normalmodelist:
             molecular_specie.NormalModes = normalmodelist
-        nstates += molecular_specie.States.count()
+        nstates += len(molecular_specie.States)
         molecular_specie.comments = str(molecular_specie.comments) 
 
     # Through the transition-matches, use our helper functions to extract 
